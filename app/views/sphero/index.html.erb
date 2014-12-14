@@ -1,0 +1,60 @@
+<div> 
+	<form name="roll" id="rollForm">
+		<input type="text" id="speed" />
+		<input type ="text" id="angle" />
+		<button type="button" id="submitMove" />
+	</form>
+</div>
+	<hr />
+<div>
+	<form id="colorForm" name="color">
+		<input type="text" id="color" />
+		<button type="button" id="submitColor" />
+	</form>
+</div>
+
+<script>
+	$(document).ready(function(){
+
+		$("#color").minicolors();
+		$("#submitMove").click(function(){
+			var hesh={"perform": "roll", "with": [$("#speed").val(),$("#angle").val()] };
+			console.log(hesh);
+			$.ajax({
+				url:'sphero/action',
+				data:JSON.stringify(hesh),
+				type: 'POST',
+				contentType: 'application/JSON',
+				success: function(){ console.log("success")},
+				error: function(){ console.log("error")}
+
+			});
+
+		});
+		$("#submitColor").click(function(){
+			var hesh={"perform": "rgb", "with": hexToRgb($("#color").val()) };
+			console.log(hesh);
+			$.ajax({
+				url:'sphero/action',
+				data:JSON.stringify(hesh),
+				type: 'POST',
+				contentType: 'application/JSON',
+				success: function(){ console.log("success")},
+				error: function(){ console.log("error")}
+
+			});
+
+		});
+		function hexToRgb(hex) {
+		    var bigint = parseInt(hex.replace('#',''), 16);
+		    var r = (bigint >> 16) & 255;
+		    var g = (bigint >> 8) & 255;
+		    var b = bigint & 255;
+
+		    return [r , g , b];
+		}
+
+
+	});
+
+</script>
