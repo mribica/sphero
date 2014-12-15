@@ -5,15 +5,25 @@ class SpheroController < ApplicationController
     get_client.rgb 100,100,100
   end
 
-  def action
-    puts get_client.response_queue.to_yaml
-    get_client.send params[:perform], *params[:with]
+  def info
+    render json: {
+      version: get_client.version,
+      bluetooth: get_client.bluetooth_info,
+      auto_reconnect: get_client.auto_reconnect,
+      power: get_client.power_state
+    }
+  end
 
-    render json: {}, location: "/"  
+  def action
+    get_client.send params[:perform], *params[:with]
+    get_client.keep_going 2
+
+    head :ok
   end
 
   private
-    def get_client
-      @client ||= Sphero.new "/dev/tty.Sphero-OBP-AMP-SPP"
-    end
+
+  def get_client
+    @client ||= Sphero.new "/dev/tty.Sphero-OBP-AMP-SPP"
+  end
 end

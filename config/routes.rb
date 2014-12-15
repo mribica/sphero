@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'sphero#index'
    post "sphero/action", to: "sphero#action"
+   get "sphero/info", to: "sphero#info"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
