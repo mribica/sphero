@@ -1,0 +1,39 @@
+body{
+	margin:0 !important;
+}
+
+a:link{
+	text-decoration:none;
+	color:#ffd2e8 ;
+}
+a:visited {
+    color: #BF5FFF;
+}
+
+header{
+	height:60px;
+	background-color:#bbccdd;
+
+	ul{
+		margin-top:20px;
+		margin-right:150px;
+		float:right;
+
+		display-block: inline;
+		list-style-type: none;
+	}
+	ul li{
+		display:inline;
+		margin-right:30px;
+
+	}
+}
+.main-content{
+	padding-top:50px;
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+	
+
+}
+

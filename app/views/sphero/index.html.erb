@@ -1,24 +1,36 @@
-<div> 
+<div>
 	<form name="roll" id="rollForm">
-		<input type="text" id="speed" />
+		<div>Select speed (from 20 to 125):</div>
+		<br/>
+		<div id="speed"></div>
+		<br/>
+		<div>Input angle(from 0 to 360): </div>
 		<input type ="text" id="angle" />
-		<button type="button" id="submitMove" />
+		<br/>
+		<br/>
+		<button type="button" id="submitMove">Submit move</button>
 	</form>
 </div>
 	<hr />
-<div>
+<div stlye="">
 	<form id="colorForm" name="color">
-		<input type="text" id="color" />
-		<button type="button" id="submitColor" />
+		<input type="text" id="color" style="width:500px; height:500px" />
+		<br/>
+		<br/>
+		<button type="button" id="submitColor" >Change color</button>
 	</form>
 </div>
 
 <script>
 	$(document).ready(function(){
+		$( "#speed" ).slider( {
+			min:20,
+			max:125
+		});
+		$("#color").minicolors({theme:'minicolors-slider-wheel', inline:true, control: 'wheel'});
 
-		$("#color").minicolors();
 		$("#submitMove").click(function(){
-			var hesh={"perform": "roll", "with": [$("#speed").val(),$("#angle").val()] };
+			var hesh={"perform": "roll", "with": [$( "#speed" ).slider( "value" ) ,$("#angle").val()] };
 			console.log(hesh);
 			$.ajax({
 				url:'sphero/action',

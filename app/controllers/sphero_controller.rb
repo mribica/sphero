@@ -2,7 +2,6 @@ class SpheroController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    get_client.rgb 100,100,100
   end
 
   def info

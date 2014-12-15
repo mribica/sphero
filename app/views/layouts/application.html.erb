@@ -7,8 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header>
 
-<%= yield %>
+	<ul>
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="">Information</a>
+		</li>
+		<li>
+			<a href= "http://www.gosphero.com/">Sphero</a>
+		</li>
+	</ul>
+</header>
+<div class="container">
+	<div class ="row">
+		<div  class="main-content">
+			<%= yield %>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>
