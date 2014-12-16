@@ -10,8 +10,8 @@ class SpheroController < ApplicationController
     unless ALLOWED.include?(params[:perform])
       head :unprocessable_entity
     else
-      get_client.send params[:perform], *params[:with]
-      get_client.keep_going 1
+      sphero.send params[:perform], *params[:with]
+      sphero.keep_going 1
       head :ok
     end
   end
@@ -20,8 +20,17 @@ class SpheroController < ApplicationController
     colors = [127, 0, 255]
 
     13.times do
-      get_client.rgb colors.sample, colors.sample, colors.sample
-      get_client.keep_going 0.2
+      sphero.rgb colors.sample, colors.sample, colors.sample
+      sphero.keep_going 0.2
+    end
+
+    head :ok
+  end
+
+  def crazy
+    10.times do
+      sphero.roll 1000, rand(360)
+      sphero.keep_going 0.1
     end
 
     head :ok
@@ -29,7 +38,7 @@ class SpheroController < ApplicationController
 
   private
 
-  def get_client
-    @client ||= Sphero.new "/dev/tty.Sphero-OBP-AMP-SPP"
+  def sphero
+    @sphero ||= Sphero.new "/dev/tty.Sphero-OBP-AMP-SPP"
   end
 end
