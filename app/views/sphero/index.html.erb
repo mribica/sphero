@@ -20,6 +20,13 @@
 		<button type="button" id="submitColor" >Change color</button>
 	</form>
 </div>
+<hr />
+<div style="padding-bottom:100px;">
+	Actions:
+	<button type="button" id="circle" >Make a circle</button>
+	<button type="button" id="crazy" >Crazy move</button>
+	<button type="button" id="randomColor" >Rainbow</button>
+</div>
 
 <script>
 	$(document).ready(function(){
@@ -50,6 +57,38 @@
 				url:'sphero/action',
 				data:JSON.stringify(hesh),
 				type: 'POST',
+				contentType: 'application/JSON',
+				success: function(){ console.log("success")},
+				error: function(){ console.log("error")}
+
+			});
+
+		});
+		$("#circle").click(function(){
+			$.ajax({
+				url:'sphero/circle',
+				type: 'GET',
+				contentType: 'application/JSON',
+				success: function(){ console.log("success")},
+				error: function(){ console.log("error")}
+
+			});
+		});
+		$("#crazy").click(function(){
+			$.ajax({
+				url:'sphero/crazy',
+				type: 'GET',
+				contentType: 'application/JSON',
+				success: function(){ console.log("success")},
+				error: function(){ console.log("error")}
+
+			});
+
+		});
+		$("#randomColor").click(function(){
+			$.ajax({
+				url:'sphero/rainbow',
+				type: 'GET',
 				contentType: 'application/JSON',
 				success: function(){ console.log("success")},
 				error: function(){ console.log("error")}
