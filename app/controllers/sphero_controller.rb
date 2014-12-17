@@ -9,7 +9,7 @@ class SpheroController < ApplicationController
   end
 
   def action
-    #system  "say 'You again?????'"
+    system  "say 'You again?' --voice=t"
     unless ALLOWED.include?(params[:perform])
       head :unprocessable_entity
     else
@@ -22,7 +22,7 @@ class SpheroController < ApplicationController
   def rainbow
     colors = [127, 0, 255]
     
-    13.times do
+    130.times do
       sphero.rgb colors.sample, colors.sample, colors.sample
       sphero.keep_going 0.5
 
